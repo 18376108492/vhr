@@ -109,10 +109,31 @@
     </insert>
 
     <select id="getEmployeeById" resultMap="AllEmployeeInfo">
-        select e.*,p.`id` as pid,p.`name` as pname,n.`id` as nid,n.`name` as nname,d.`id` as did,d.`name` as
-        dname,j.`id` as jid,j.`name` as jname,pos.`id` as posid,pos.`name` as posname from employee e,nation
-        n,politicsstatus p,department d,joblevel j,position pos where e.`nationId`=n.`id` and e.`politicId`=p.`id` and
-        e.`departmentId`=d.`id` and e.`jobLevelId`=j.`id` and e.`posId`=pos.`id` and e.`id`=#{id}
+     SELECT
+	e.*, p.`id` AS pid,
+	p.`name` AS pname,
+	n.`id` AS nid,
+	n.`name` AS nname,
+	d.`id` AS did,
+	d.`name` AS dname,
+	j.`id` AS jid,
+	j.`name` AS jname,
+	pos.`id` AS poid,
+	pos.`name` AS poname
+FROM
+	employee e,
+	nation n,
+	politicsstatus p,
+	department d,
+	joblevel j,
+	position pos
+WHERE
+	e.`nationId` = n.`id`
+AND e.`politicId` = p.`id`
+AND e.`departmentId` = d.`id`
+AND e.`jobLevelId` = j.`id`
+AND e.`posId` = pos.`id`
+AND e.`id` = #{id}
     </select>
 
     <!--获取所有员工数据，并分页显示-->
