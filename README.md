@@ -36,3 +36,6 @@
 ### 4. 准备好RabbitMQ，修改application.properties中的RabbitMQ配置
 ### 5. 在idea中，将下载好的项目打开的，启动mail-server模块，再启动vhr-server中的vhr-web模块
 ### 6. 项目启动成功后，在浏览器中访问：https://localhost:9091/index.html
+# 参考
+* [vhr](https://github.com/lenve/vhr)
+* [vue-chat](https://github.com/microzz/vue-chat)
