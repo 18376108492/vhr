@@ -1,9 +1,11 @@
 package com.itdan.my_vhr.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
 
 import java.util.Date;
 
+@ApiModel(value = "薪水实体类",description = "员工薪水描述")
 public class Salary {
     private Integer id;
 

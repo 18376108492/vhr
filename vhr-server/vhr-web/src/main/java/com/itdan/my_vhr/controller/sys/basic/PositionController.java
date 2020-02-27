@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @Api(value = "职位管理")
-@CrossOrigin
 @RestController
 @RequestMapping("/sys/basic/pos")
 public class PositionController {

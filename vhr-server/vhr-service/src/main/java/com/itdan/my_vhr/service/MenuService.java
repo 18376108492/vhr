@@ -4,8 +4,6 @@ import com.itdan.my_vhr.mapper.MenuMapper;
 import com.itdan.my_vhr.mapper.MenuRoleMapper;
 import com.itdan.my_vhr.model.Hr;
 import com.itdan.my_vhr.model.Menu;
-import com.itdan.my_vhr.model.RespBean;
-import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
-import sun.plugin.liveconnect.SecurityContextHelper;
 
 import java.util.List;
 
@@ -32,6 +29,7 @@ public class MenuService {
      * 根据登入的用户ID获取其能访问的相应菜单
      * @return
      */
+
     public List<Menu> getSystemConfigMenuByHrId(){
         //从SecurityContextHolder中获取到登入用户的信息，在获取ID
         logger.info("根据登入的用户ID获取其能访问的相应菜单操作");

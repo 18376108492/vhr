@@ -50,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private HrService hrService;
 
+//    @Autowired
+//    private StringRedisTemplate stringRedisTemplate;
+
     /**
      * 配置用户信息
      *
@@ -63,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().mvcMatchers("/login");
+        web.ignoring().antMatchers("/login","/css/**","/index.html","/img/**","/js/**","/fonts/**","/favicon.ico");
     }
 
     /**
@@ -142,6 +145,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         //设置响应体
                         resp.setContentType("application/json;charset=utf-8");
                         PrintWriter printWriter = resp.getWriter();
+                        //清空redis中的菜单栏缓存
+                        //stringRedisTemplate.delete("MENU_CONFIG");
                         RespBean result = RespBean.ok("注销成功!");
                         //将后台相应结果封装成json字符串
                         printWriter.write(new ObjectMapper().writeValueAsString(result));

@@ -1,7 +1,6 @@
 package com.itdan.my_vhr.service;
 
 import com.itdan.my_vhr.mapper.RoleMapper;
-import com.itdan.my_vhr.model.Position;
 import com.itdan.my_vhr.model.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

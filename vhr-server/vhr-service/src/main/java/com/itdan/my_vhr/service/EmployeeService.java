@@ -5,6 +5,7 @@ import com.itdan.my_vhr.model.Employee;
 import com.itdan.my_vhr.model.RespPageBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ import java.util.List;
 public class EmployeeService {
 
     private Logger logger=LoggerFactory.getLogger(EmployeeService.class);
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private EmployeeMapper employeeMapper;
@@ -74,6 +78,16 @@ public class EmployeeService {
                      (Double.parseDouble(mouthSimple.format(endContract))- Double.parseDouble(mouthSimple.format(beginContract)));
         record.setContractTerm(Double.parseDouble(decimalFormat.format(mouth/12)));
         Integer row= employeeMapper.insertSelective(record);
+
+
+        //添加员工成功后，将添加的员工信息传到消息中间件
+        if(row==1){
+             //获取刚插入的员工信息
+            Employee employee = employeeMapper.getEmployeeById(record.getId());
+            //发送消息
+            rabbitTemplate.convertAndSend("vhr.mail.wellcome",employee);
+            logger.info("发送员工入职消息");
+        }
         logger.info("添加员工操作成功");
         return row;
     }
@@ -133,6 +147,40 @@ public class EmployeeService {
         }
         Integer row= employeeMapper.addEmps(employees);
         logger.info("将员工集合插入数据库中成功");
+        return row;
+    }
+
+    /**
+     * 获取所有员工账套(分页显示)
+     * @param page
+     * @param size
+     * @return
+     */
+    public RespPageBean getEmployeeWithSalary(Integer page, Integer size) {
+        logger.info("获取所有员工账套(分页显示)操作");
+        if(page!=null && size!=null){
+            page=((page-1)*size);
+        }
+        List<Employee> employees=employeeMapper.getEmployeeByPageWithSalary(page,size);
+        Long total = employeeMapper.getTotal(null, null);
+        logger.info("获取所有员工账套(分页显示)操作成功");
+        return new RespPageBean(total,employees);
+    }
+
+    /**
+     * 更新员工账套
+     * @param eid
+     * @param sid
+     * @return
+     */
+    public Integer updateSalaryCfg(Integer eid, Integer sid) {
+        logger.info("获取所有员工账套操作");
+        if(eid==null || sid==null){
+            logger.error("更新员工账套失败，参数为空");
+            throw new NullPointerException("更新员工账套失败，参数为空");
+        }
+        Integer row =employeeMapper.updateEmployeeSalaryById(eid,sid);
+        logger.info("获取所有员工账套操作成功");
         return row;
     }
 }

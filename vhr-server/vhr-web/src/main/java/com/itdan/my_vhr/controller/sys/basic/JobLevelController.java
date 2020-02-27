@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(value = "职称管理")
-@CrossOrigin
 @RestController
 @RequestMapping("/sys/basic/joblevel")
 public class JobLevelController {

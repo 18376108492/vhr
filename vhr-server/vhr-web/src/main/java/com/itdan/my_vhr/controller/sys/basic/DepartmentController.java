@@ -3,7 +3,6 @@ package com.itdan.my_vhr.controller.sys.basic;
 
 import com.itdan.my_vhr.model.Department;
 import com.itdan.my_vhr.model.RespBean;
-import com.itdan.my_vhr.model.Role;
 import com.itdan.my_vhr.service.DepartmentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -15,7 +14,6 @@ import java.util.List;
 
 
 @Api(value = "部门管理")
-@CrossOrigin
 @RestController
 @RequestMapping("/sys/basic/department")
 public class DepartmentController {

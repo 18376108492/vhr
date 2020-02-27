@@ -1,7 +1,10 @@
 package com.itdan.my_vhr.model;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
+@ApiModel(value = "消息实体类",description = "消息实体描述")
 public class ChatMsg {
     private String from;
     private String to;
@@ -47,5 +50,16 @@ public class ChatMsg {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatMsg{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                ", fromNickname='" + fromNickname + '\'' +
+                '}';
     }
 }

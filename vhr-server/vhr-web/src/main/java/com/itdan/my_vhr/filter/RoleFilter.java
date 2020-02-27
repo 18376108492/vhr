@@ -2,7 +2,6 @@ package com.itdan.my_vhr.filter;
 
 import com.itdan.my_vhr.model.Menu;
 import com.itdan.my_vhr.model.Role;
-import com.itdan.my_vhr.service.HrService;
 import com.itdan.my_vhr.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

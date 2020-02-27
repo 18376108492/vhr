@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(value = "Hr管理")
-@CrossOrigin
 @RestController
 @RequestMapping("/sys/hr")
 public class HrController {

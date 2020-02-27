@@ -1,7 +1,6 @@
 package com.itdan.my_vhr.controller.sys.basic;
 
 import com.itdan.my_vhr.model.Menu;
-import com.itdan.my_vhr.model.Position;
 import com.itdan.my_vhr.model.RespBean;
 import com.itdan.my_vhr.model.Role;
 import com.itdan.my_vhr.service.MenuService;
